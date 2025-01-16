@@ -31,6 +31,11 @@ const year = currentDate.getFullYear(); // Получаем полный год
 // Форматируем дату
 const formattedDate = day+'.'+month+'.'+year;
 
+    // Изменение масштаба изображения
+    document.getElementById('scaleInput').addEventListener('input', (event) => {
+        scale = event.target.value;
+        drawBaseImage(); // Перерисовываем изображение с новым масштабом
+    });
 
 // Загрузка изображения с ПК
 document.getElementById('imageLoader').addEventListener('change', (event) => {
