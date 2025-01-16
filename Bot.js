@@ -2,8 +2,8 @@ const canvas = document.getElementById('canvas');
 const canvas2 = document.getElementById('canvas2');
 const ctx = canvas.getContext('2d');
 const ctx2 = canvas2.getContext('2d');
-let scale = 1;
-let scale2 = 1;
+let scale = 3;
+let scale2 = 3;
 
 // Загрузка изображения
 const image = new Image();
@@ -92,7 +92,7 @@ document.getElementById('addTextButton').addEventListener('click', () => {
 
     ctx.font = 'bold 35px Courier New';
     ctx.fillStyle = 'black';
-    ctx.fillText(text1 + ',', 940, 703); // Установите координаты (x, y) по вашему желанию
+    ctx.fillText(text1 + ',', 970, 703); // Установите координаты (x, y) по вашему желанию
 
     ctx.font = 'bolder 50px Courier New';
     ctx.fillStyle = 'black';
