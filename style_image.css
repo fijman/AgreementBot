@@ -16,7 +16,17 @@ body {
 #canvas {
     margin-top: 30vh;
     position: absolute;
-    margin-left: 200vw;
+    margin-left: 130vw;
+    border: 1px solid #000;
+    zoom: 25%;
+    z-index: 2;
+    border-radius: 30px;
+}
+
+#canvas2 {
+    margin-top: 30vh;
+    position: absolute;
+    margin-left: 265vw;
     border: 1px solid #000;
     zoom: 25%;
     z-index: 2;
@@ -49,12 +59,12 @@ body {
 }
 
 button{
-    margin-top: 2vw;
+    margin-top: 1vw;
     font-size: 15px;
     align-items: center;
     margin-left: 5vw;
-    width: 300px;
-    height: 60px;
+    width: 12vw;
+    height: 3vw;
     background-color: #ffb342;
     color: white;
     border: none;
@@ -63,7 +73,66 @@ button{
     font-weight: bolder;
 
 }
+#addTextButton{
+    margin-top: 5vw;
+}
+
+#imageLoader{
+
+    margin-top: 2vw;
+    font-size: 15px;
+    align-items: center;
+    margin-left: 5vw;
+    width: 12vw;
+    height: 3vw;
+    background-color: #b9b9b9;
+    color: rgba(255, 255, 255, 0);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+#btn {
+    position: absolute;
+    padding: 10px;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 3vw;
+    font-size: 14px;
+    border: 0px solid #ffffff;
+    background: #ff0000;
+    background-color: #222222;
+    color: #c0c0c0;
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+#btn2 {
+    margin-top: 10px;
+    position: absolute;
+    padding: 10px;
+    align-items: center;
+    margin-left: 3vw;
+    font-size: 14px;
+    border: 0px solid #ffffff;
+    background: #ff0000;
+    background-color: #222222;
+    color: #c0c0c0;
+    width: 130px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+#scaleInput{
+    margin-top: 20px; 
+}
+
+#scaleInput2{
+    margin-top: 20px; 
+}
 
 #textInput{
-    margin-top: 10vw;
+    margin-top: 10vh;
 }
