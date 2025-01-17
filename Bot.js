@@ -8,8 +8,8 @@ let scale2 = 3;
 // Загрузка изображения
 const image = new Image();
 const image2 = new Image();
-image.src = 'ДОГОВОР_Сайт.jpg'; // Замените URL на ваше изображение
-image2.src = 'ДОГОВОР_Сайт2.jpg'; // Замените URL на ваше изображение
+image.src = 'ДОГОВОР_Сайт.jpeg'; // Замените URL на ваше изображение
+image2.src = 'ДОГОВОР_Сайт2.jpeg'; // Замените URL на ваше изображение
 image.onload = () => {
     ctx.drawImage(image, 0, 0);
     ctx2.drawImage(image2, 0, 0);
@@ -21,15 +21,25 @@ let image4 = new Image();
 
 
 // Получаем текущую дату
-const currentDate = new Date();
+function getCurrentDateMoscow() {
+    // Создаем объект даты
+    const date = new Date();
 
-// Получаем день, месяц и год
-const day = String(currentDate.getDate()).padStart(2, '0'); // Делаем день двузначным
-const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Месяцы начинаются с 0
-const year = currentDate.getFullYear(); // Получаем полный год
+    // Получаем время в миллисекундах по GMT и добавляем 3 часа (в миллисекундах)
+    const moscowDate = new Date(date.toLocaleString("en-US", { timeZone: "Europe/Moscow" }));
 
-// Форматируем дату
-const formattedDate = day+'.'+month+'.'+year;
+    // Форматируем дату в нужный формат
+    const day = String(moscowDate.getDate()).padStart(2, '0');
+    const month = String(moscowDate.getMonth() + 1).padStart(2, '0'); // Месяцы начинаются с 0
+    const year = moscowDate.getFullYear();
+
+    // Возвращаем дату в формате DD.MM.YYYY
+    return day+'.'+month+'.'+year;
+}
+
+// Записываем актуальную дату в переменную
+const currentDate = getCurrentDateMoscow();
+
 
     // Изменение масштаба изображения
     document.getElementById('scaleInput').addEventListener('input', (event) => {
@@ -96,7 +106,7 @@ document.getElementById('addTextButton').addEventListener('click', () => {
 
     ctx.font = 'bolder 50px Courier New';
     ctx.fillStyle = 'black';
-    ctx.fillText(formattedDate, 900, 500); // Установите координаты (x, y) по вашему желанию
+    ctx.fillText(currentDate, 900, 500); // Установите координаты (x, y) по вашему желанию
 //
         // Очистка канваса и перерисовка изображения
     ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
