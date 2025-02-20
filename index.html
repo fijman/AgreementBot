@@ -25,7 +25,7 @@
 
 <input type="text"class='TEXT' id="textInput4" placeholder="Дискорд адвоката" />
 
-<input type="text"class='TEXT' id="textInput5" placeholder="Договор заключен до" />
+
 
 
 
@@ -34,7 +34,7 @@
 <form enctype="multipart/form-data" action="/fu.php" method="POST">
     <div id="btn">
     <label for="imageLoader">Выбрать файл (Подпись доверителя)</label>
-    <input type="range" id="scaleInput" min="0.1" max="6" step="0.1" value="3">
+    <input type="range" id="scaleInput" min="0.05" max="6" step="0.05" value="3">
     </div>
     <input id='imageLoader' style="visibility:hidden;" name="userfile" accept="image/*" type="file">
 
@@ -43,7 +43,7 @@
 <form enctype="multipart/form-data" action="/fu.php" method="POST">
         <div id="btn2">
         <label for="imageLoader2">Выбрать файл (Подпись адвоката)</label>
-        <input type="range" id="scaleInput2" min="0.1" max="6" step="0.1" value="3">
+        <input type="range" id="scaleInput2" min="0.05" max="6" step="0.5" value="3">
         </div>
         <input id='imageLoader2' style="visibility:hidden;" name="userfile" accept="image/*" type="file">
     
@@ -51,7 +51,7 @@
 
 
 
-<button id="addTextButton">Обновить</button>
+
 <button id="downloadButton">Скачать договор</button>
 </div>
 

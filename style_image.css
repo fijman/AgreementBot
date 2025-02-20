@@ -59,7 +59,7 @@ body {
 }
 
 button{
-    margin-top: 1vw;
+    margin-top: 5vw;
     font-size: 15px;
     align-items: center;
     margin-left: 3vw;
@@ -74,13 +74,11 @@ button{
 
 
 }
-#addTextButton{
-    margin-top: 5vw;
-}
+
 
 #imageLoader{
 
-    margin-top: 2vw;
+    margin-top: 1vw;
     font-size: 15px;
     align-items: center;
     margin-left: 5vw;
