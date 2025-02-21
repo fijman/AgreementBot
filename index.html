@@ -11,54 +11,33 @@
     <link rel="icon" type="image/x-icon" href="statue-of-liberty.ico">
 </head>
 <body>
-
 <div class="Container">
+    <input type="text" class='TEXT' id="textInput" placeholder="Имя и Фамилия доверителя" />
+    <input type="text" class='TEXT' id="textInput1" placeholder="Имя и Фамилия Адвоката" />
+    <input type="text" class='TEXT' id="textInput3" placeholder="Дискорд доверителя" />
+    <input type="text" class='TEXT' id="textInput4" placeholder="Дискорд адвоката" />
+    <input type="text" class='TEXT' id="textInput5" placeholder="Дополнительная информация" />
 
-    
-
-
-<input type="text"class='TEXT' id="textInput" placeholder="Имя и Фамилия доверителя" />
-
-<input type="text"class='TEXT' id="textInput1" placeholder="Имя и Фамилия Адвоката" />
-
-<input type="text"class='TEXT' id="textInput3" placeholder="Дискорд доверителя" />
-
-<input type="text"class='TEXT' id="textInput4" placeholder="Дискорд адвоката" />
-
-
-
-
-
-
-
-<form enctype="multipart/form-data" action="/fu.php" method="POST">
-    <div id="btn">
-    <label for="imageLoader">Выбрать файл (Подпись доверителя)</label>
-    <input type="range" id="scaleInput" min="0.05" max="6" step="0.05" value="3">
-    </div>
-    <input id='imageLoader' style="visibility:hidden;" name="userfile" accept="image/*" type="file">
-
+    <form enctype="multipart/form-data" action="/fu.php" method="POST">
+        <div id="btn">
+            <label for="imageLoader">Выбрать файл (Подпись доверителя)</label>
+            <input type="range" id="scaleInput" min="0.05" max="6" step="0.05" value="3">
+        </div>
+        <input id='imageLoader' style="visibility:hidden;" name="userfile" accept="image/*" type="file">
     </form>
 
-<form enctype="multipart/form-data" action="/fu.php" method="POST">
+    <form enctype="multipart/form-data" action="/fu.php" method="POST">
         <div id="btn2">
-        <label for="imageLoader2">Выбрать файл (Подпись адвоката)</label>
-        <input type="range" id="scaleInput2" min="0.05" max="6" step="0.5" value="3">
+            <label for="imageLoader2">Выбрать файл (Подпись адвоката)</label>
+            <input type="range" id="scaleInput2" min="0.05" max="6" step="0.5" value="3">
         </div>
         <input id='imageLoader2' style="visibility:hidden;" name="userfile" accept="image/*" type="file">
-    
-        </form>
+    </form>
 
-
-
-
-<button id="downloadButton">Скачать договор</button>
+    <button id="downloadButton">Скачать договор</button>
 </div>
 
 <canvas id="canvas" width="2300" height="3300"></canvas>
 <canvas id="canvas2" width="2300" height="3300"></canvas>
-<script>
-
- </script>
 </body>
 </html>

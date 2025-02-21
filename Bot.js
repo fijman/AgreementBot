@@ -35,6 +35,7 @@ let dragOffsetX = 0;
 let dragOffsetY = 0;
 let draggedImage = null;
 
+// Функции для работы с датами
 function getCurrentDateMoscow() {
     const date = new Date();
     const moscowDate = new Date(date.toLocaleString("en-US", { timeZone: "Europe/Moscow" }));
@@ -50,13 +51,15 @@ function getCurrentDate() {
 const currentDate = getCurrentDateMoscow();
 const currentDate3 = getCurrentDate();
 
+// Обновление масштаба
 function updateScale(event, target) {
+    const value = parseFloat(event.target.value);
     if (target === 'scale1') {
-        scale = event.target.value;
-        images[0].scale = scale;
+        scale = value;
+        images[0].scale = value;
     } else {
-        scale2 = event.target.value;
-        images[1].scale = scale2;
+        scale2 = value;
+        images[1].scale = value;
     }
     drawBaseImage();
 }
@@ -64,33 +67,43 @@ function updateScale(event, target) {
 document.getElementById('scaleInput').addEventListener('input', (event) => updateScale(event, 'scale1'));
 document.getElementById('scaleInput2').addEventListener('input', (event) => updateScale(event, 'scale2'));
 
+// Обработка текстовых полей
 document.querySelectorAll('input[type="text"]').forEach(input => {
     input.addEventListener('input', drawBaseImage);
 });
 
-document.getElementById('imageLoader').addEventListener('change', (event) => loadImage(event, images[0]));
-document.getElementById('imageLoader2').addEventListener('change', (event) => loadImage(event, images[1]));
-
+// Загрузка изображений
 function loadImage(event, imageObj) {
     const file = event.target.files[0];
     if (file) {
+        console.log("Файл выбран:", file.name);
         const reader = new FileReader();
         reader.onload = function(e) {
+            console.log("Файл прочитан успешно.");
             const img = new Image();
             img.onload = function () {
-                console.log("Изображение загружено и готово к отображению.");
+                console.log("Изображение загружено в память.");
                 imageObj.img = img;
                 drawBaseImage();
             };
             img.onerror = function () {
-                console.error("Ошибка загрузки изображения.");
+                console.error("Ошибка загрузки изображения:", img.src);
             };
             img.src = e.target.result;
         };
+        reader.onerror = function (e) {
+            console.error("Ошибка чтения файла:", e.target.error);
+        };
         reader.readAsDataURL(file);
+    } else {
+        console.log("Файл не выбран.");
     }
 }
 
+document.getElementById('imageLoader').addEventListener('change', (event) => loadImage(event, images[0]));
+document.getElementById('imageLoader2').addEventListener('change', (event) => loadImage(event, images[1]));
+
+// Отрисовка базового изображения
 function drawBaseImage() {
     console.log("Перерисовка канвасов.");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -98,6 +111,7 @@ function drawBaseImage() {
     ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
     ctx2.drawImage(image2, 0, 0);
     
+    // Текст на первом канвасе
     ctx.font = 'bold 35px Courier New';
     ctx.fillStyle = 'rgb(50, 50, 50)';
     ctx.fillText(`${document.getElementById('textInput').value}, именуем(ый/ая) в дальнейшем "Доверитель", заключили`, 450, 703);
@@ -106,17 +120,24 @@ function drawBaseImage() {
     ctx.font = 'bolder 60px Courier New';
     ctx.fillText(currentDate, 900, 500);
 
+    // Текст на втором канвасе
     ctx2.font = 'bolder 35px Courier New';
     ctx2.fillStyle = 'rgb(50, 50, 50)';
     ctx2.fillText(`${document.getElementById('textInput3').value}@dis.com`, 480, 1520);
     ctx2.fillText(`${document.getElementById('textInput4').value}@dis.com`, 420, 1570);
     ctx2.fillText(document.getElementById('textInput5').value, 1130, 770);
 
-    // Если изображения добавлены, рисуем их
+    // Отрисовка изображений
     images.forEach((imageObj, index) => {
         if (imageObj.img) {
             console.log(`Рисуем изображение ${index + 1} на координатах X=${imageObj.x}, Y=${imageObj.y}.`);
-            ctx2.drawImage(imageObj.img, imageObj.x, imageObj.y, imageObj.img.width * imageObj.scale, imageObj.img.height * imageObj.scale);
+            ctx2.drawImage(
+                imageObj.img, 
+                imageObj.x, 
+                imageObj.y, 
+                imageObj.img.width * imageObj.scale, 
+                imageObj.img.height * imageObj.scale
+            );
         }
     });
 
@@ -124,6 +145,7 @@ function drawBaseImage() {
     processInput2();
 }
 
+// Обработка ввода текста
 function processInput() {
     const words = document.getElementById("textInput").value.trim().split(" ");
     if (words.length >= 2) {
@@ -147,7 +169,7 @@ canvas2.addEventListener('mousedown', (event) => {
     const mouseX = (event.clientX - rect.left) / CSS_SCALE_FACTOR;
     const mouseY = (event.clientY - rect.top) / CSS_SCALE_FACTOR;
 
-    images.forEach((imageObj, index) => {
+    images.forEach((imageObj) => {
         if (imageObj.img) {
             const imgWidth = imageObj.img.width * imageObj.scale;
             const imgHeight = imageObj.img.height * imageObj.scale;
@@ -183,22 +205,9 @@ canvas2.addEventListener('mouseleave', () => {
     draggedImage = null;
 });
 
+// Кнопка скачивания
 document.getElementById('downloadButton').addEventListener('click', () => {
     console.log("Кнопка 'Скачать' нажата.");
-    // Перетаскивание изображений разрешается только после нажатия кнопки
-    if (images[0].img && images[1].img) {
-        // Изображения уже добавлены, сохраняем их позиции
-        drawBaseImage();
-    } else {
-        // Если изображения не добавлены, загружаем их с канваса
-        images[0].img = image;
-        images[1].img = image2;
-
-        // Перерисовываем канвас
-        drawBaseImage();
-    }
-
-    // Скачивание изображений с канваса
     const link = document.createElement('a');
     link.download = 'image_with_text.jpeg';
     link.href = canvas.toDataURL();
