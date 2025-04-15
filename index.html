@@ -5,33 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bar Association - "IronSide"</title>
     <link rel='stylesheet' type='text/css' media='screen' href='style_image.css'>
-    <script type="text/javascript" src="Bot.js" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="./js/fileinput.js"></script>
+    <script type="text/javascript" src="Bot.js" defer></script>
     <link rel="icon" type="image/x-icon" href="statue-of-liberty.ico">
 </head>
 <body>
 <div class="Container">
-    <input type="text" class='TEXT' id="textInput" placeholder="Имя и Фамилия доверителя" />
-    <input type="text" class='TEXT' id="textInput1" placeholder="Имя и Фамилия Адвоката" />
-    <input type="text" class='TEXT' id="textInput3" placeholder="Дискорд доверителя" />
-    <input type="text" class='TEXT' id="textInput4" placeholder="Дискорд адвоката" />
-    <input type="text" class='TEXT' id="textInput5" placeholder="Дополнительная информация" />
+    <input type="text" class='TEXT' id="textInput" placeholder="Имя и Фамилия доверителя">
+    <input type="text" class='TEXT' id="textInput1" placeholder="Имя и Фамилия Адвоката">
+    <input type="text" class='TEXT' id="textInput3" placeholder="Дискорд доверителя">
+    <input type="text" class='TEXT' id="textInput4" placeholder="Дискорд адвоката">
 
-    <form enctype="multipart/form-data" action="/fu.php" method="POST">
+
+    <!-- Упрощенные формы без отправки на сервер -->
+    <form>
         <div id="btn">
             <label for="imageLoader">Выбрать файл (Подпись доверителя)</label>
-            <input type="range" id="scaleInput" min="0.05" max="6" step="0.05" value="3">
+            <input type="range" id="scaleInput" min="0.05" max="6" step="0.005" value="3">
         </div>
-        <input id='imageLoader' style="visibility:hidden;" name="userfile" accept="image/*" type="file">
+        <input id='imageLoader' style="visibility:hidden;" accept="image/*" type="file">
     </form>
 
-    <form enctype="multipart/form-data" action="/fu.php" method="POST">
+    <form>
         <div id="btn2">
             <label for="imageLoader2">Выбрать файл (Подпись адвоката)</label>
-            <input type="range" id="scaleInput2" min="0.05" max="6" step="0.5" value="3">
+            <input type="range" id="scaleInput2" min="0.05" max="6" step="0.005" value="3">
         </div>
-        <input id='imageLoader2' style="visibility:hidden;" name="userfile" accept="image/*" type="file">
+        <input id='imageLoader2' style="visibility:hidden;" accept="image/*" type="file">
     </form>
 
     <button id="downloadButton">Скачать договор</button>

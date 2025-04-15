@@ -139,3 +139,19 @@ button{
 #textInput{
     margin-top: 10vh;
 }
+
+#btn, #btn2 {
+    transition: background-color 0.3s ease;
+}
+
+#btn:hover, #btn2:hover {
+    background-color: #ff4500;
+}
+
+button:hover {
+    background-color: #ff8c00;
+}
+
+#scaleInput, #scaleInput2 {
+    cursor: pointer;
+}
